@@ -4,7 +4,7 @@
         <div>
         	<h3>Edit Sub Category</h3>
         </div>
-            
+
         <div>
         	<form role="form" action="/sub_category/update/{{$edit_sub->id}}" method="get">
 
@@ -15,9 +15,11 @@
                     <option value="{{ $edit_sub->category_name }}" selected>{{ $edit_sub->category_name }}</option>
 
                     @foreach($cat_name as $row)
+                        @if($row->category_name != $edit_sub->category_name)
+                            <option value="{{$row->category_name}}">{{$row->category_name}}</option>
+                        @endif
 
-                        <option value="{{$row->category_name}}">{{$row->category_name}}</option>
-                        
+
                     @endforeach
 
                 </select><br>
