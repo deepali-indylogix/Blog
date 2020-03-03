@@ -19,7 +19,6 @@
                             <option value="{{$row->category_name}}">{{$row->category_name}}</option>
                         @endif
 
-
                     @endforeach
 
                 </select><br>
