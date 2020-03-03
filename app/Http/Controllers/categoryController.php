@@ -17,6 +17,7 @@ class categoryController extends Controller
     //fetch data
     public function index() {
         $result = Category::all();
+        $result = Category::paginate(5);
         return view( 'Category/view_category', compact('result') );
     }
 

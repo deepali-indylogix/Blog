@@ -2,9 +2,10 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 well">
             <div class="card">
-                <div class="card-header">Sub Category</div>
+
 
                 <div class="card-body">
                     @if(session()->get('success'))
@@ -14,11 +15,8 @@
                       @endif
                 </div>
                 <div class="col-sm-12">
-                    <a style="margin: 15px;" href="/sub_category" class="btn btn-primary">New Sub Category</a>
-                </div>
-        
-                <div class="col-sm-12">
                     <table class="table table-striped" border="1">
+                        <legend><a style="margin: 15px;" href="/sub_category" class="btn btn-primary">New Sub Category</a></legend>
                         <thead>
                             <th>Id</th>
                             <th>Category Name</th>
@@ -42,6 +40,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $res->links() }}
                 </div>
             </div>
         </div>

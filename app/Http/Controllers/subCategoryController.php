@@ -10,6 +10,7 @@ class subCategoryController extends Controller
 {
       public function index() {
             $res = Sub_category::all();
+            $res = Sub_category::paginate(5);
             return view('Sub_category/view_sub_category', compact('res'));
 	}
 

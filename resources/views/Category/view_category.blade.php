@@ -1,11 +1,11 @@
 @include('header')
 
-<div class="container">
+<div class="container ">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 well">
             <div class="card">
-                <div class="card-header">Category</div>
-
+                
                 <div class="card-body">
                     @if(session()->get('success'))
                         <div class="alert alert-success">
@@ -13,12 +13,10 @@
                         </div>
                       @endif
                 </div>
-                <div class="col-sm-12">
-                    <a style="margin: 15px;" href="/category" class="btn btn-primary">New Category</a>
-                </div>
         
                 <div class="col-sm-12">
                     <table class="table table-striped" border="1">
+                        <legend><a style="margin: 15px;" href="/category" class="btn btn-primary">New Category</a></legend>
                         <thead>
                             <th>Id</th>
                             <th>Name</th>
@@ -40,6 +38,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $result->links() }}
                 </div>
             </div>
         </div>
