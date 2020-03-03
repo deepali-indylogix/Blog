@@ -14,11 +14,12 @@ class categoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     //fetch data
     public function index() {
         $result = Category::all();
         $result = Category::paginate(5);
-        return view( 'Category/view_category', compact('result') );
+        return view( 'Category/category', compact('result') );
     }
 
     //view page
@@ -40,7 +41,8 @@ class categoryController extends Controller
     }
 
     public function show($id) {
-        echo 'show';
+        $ct = Category::find($id);
+        return view('Category/view_category', compact('ct'));
     }
     
     // edit data

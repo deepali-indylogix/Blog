@@ -11,7 +11,7 @@ class subCategoryController extends Controller
       public function index() {
             $res = Sub_category::all();
             $res = Sub_category::paginate(5);
-            return view('Sub_category/view_sub_category', compact('res'));
+            return view('Sub_category/sub_category', compact('res'));
 	}
 
 	public function create() {
@@ -32,7 +32,12 @@ class subCategoryController extends Controller
 	}
 
 	public function show($id) {
-            // echo 'show';
+            $cs = Sub_category::find($id);
+            // $cs->category_name = $request->category_name;
+            // $cs->sub_category_name = $request->sub_category_name;
+            // $cs->save();
+
+            return view('Sub_category/view_sub_category', compact('cs'));
 	}
 
 	public function edit($id) {
