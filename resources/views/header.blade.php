@@ -46,29 +46,6 @@
                 });
 
 
-                //delete single data
-                $(document).on('click', '#abcd', function(){
-                    var id = $(this).attr('data-id');
-                    $('#delete:checked').each(function(){
-                        id.push($(this).attr('data-id'));
-                    });
-                    var check = confirm("Are you sure you want to Delete this data?");
-                    if(check == true) {
-                        $.ajax({
-                            url: '/category/delete/{id}',
-                            mehtod:"get",
-                            data:{id:id},
-                            success:function(data) {
-                                // alert(data);
-                                // $('.table').DataTable().ajax.reload();
-                            }
-                        })
-                    }
-
-                });
-
-
-
                 $('#abc').on('click', function(e) {
                     var id = [];
                     $("#delete:checked").each(function() {
@@ -88,9 +65,7 @@
                                 type:'DELETE',
                                 data:{ids:join},
                                 success: function (data) {
-                                    // $('.table').DataTable().ajax.reload();
                                     $('#table2').load(location.href + " #table2");
-                                    //$('location').attr('href', '/category/view');
                                 },
                                 error: function (data) {
                                     alert(data.responseText);
@@ -100,30 +75,6 @@
                     }
                 });
 
-                // // delete all data
-                // $(document).on('click', '#all_selectt', function(){
-                //     var id = [];
-                //     $('.select_all:checked').each(function(){
-                //         id.push($(this).attr('data-id'));
-                //     });
-                //     if(confirm("Are you sure you want to Delete ALL data?")) {
-                //         if(id.length > 0) {
-                //             var join_selected_values = allVals.join(",");
-                //             $.ajax({
-                //                 url: '/category/delete/{id}',
-                //                 method:"get",
-                //                 data:{id:join_selected_values},
-                //                 success:function(data) {
-                //                     // alert(data);
-                //                     $('.table').DataTable().ajax.reload();
-                //                 }
-                //             });
-                //         }
-                //         else {
-                //             alert("Please select atleast one checkbox");
-                //         }
-                //     }
-                // });
 
 
             });

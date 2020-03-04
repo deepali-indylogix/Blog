@@ -69,10 +69,6 @@ class categoryController extends Controller
         // return redirect('/category/view')->with('success', 'single Category deleted!');
     }
 
-    //delete all data
-    public function delete_all($id) {
-        Category::find($request->input('id'))->delete();
-        return redirect('/category/view')->with('success', 'All Category deleted!');
-    }
+
 
 }

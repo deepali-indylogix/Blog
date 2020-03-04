@@ -28,7 +28,6 @@ Route::get('/category/edit/{id}', 'categoryController@edit');
 Route::get('/category/update/{id}', 'categoryController@update');
 Route::get('/category/destroy/{id}', 'categoryController@destroy');
 Route::get('/category/delete/{id}', 'categoryController@delete');
-// Route::get('/category/delete_all', 'categoryController@delete_all')->name('ajaxdata.massremove');
 
 //Subcategory
 Route::get('/sub_category', 'subCategoryController@create');

@@ -18,7 +18,6 @@
                     <table id="table" class="table table-striped" border="1">
                         <legend>
                             <a style="margin: 15px;" href="javascript:void(0)" id="abc" class="btn btn-danger">Delete</a>
-                            {{-- $checked = $request->has('delete') ? 1 : 0; --}}
                             <a style="margin: 15px;" href="/category" class="btn btn-primary">New Category</a>
                         </legend>
 
