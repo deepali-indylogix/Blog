@@ -5,8 +5,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-10 well">
             <div class="card">
-
-
+                <h2><b>Sub Category</b></h2>
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8">
                     <table class="table table-striped" border="1">
@@ -14,7 +13,6 @@
                         <thead>
                             <th>Id</th>
                             <th>{{$cs->id}}</th>
-                            
                         </thead>
                         <tbody>
                             <tr>
@@ -33,7 +31,5 @@
         </div>
     </div>
 </div>
-
-    
 
 @include('footer')

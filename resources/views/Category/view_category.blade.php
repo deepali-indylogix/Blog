@@ -5,7 +5,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-10 well">
             <div class="card">
-                
+                <h2><b>Category</b></h2>
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8">
                     <table class="table table-striped" border="1">
@@ -14,7 +14,6 @@
                         <thead>
                             <th>Id</th>
                             <th>{{$ct->id}}</th>
-                            
                         </thead>
                         <tbody>
                             <tr>
@@ -31,8 +30,6 @@
             </div>
         </div>
     </div>
-</div>
-
-    
+</div>  
 
 @include('footer')

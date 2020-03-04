@@ -23,7 +23,7 @@ class subCategoryController extends Controller
             $request->validate([
                   'category_name'=>'required',
                   'sub_category_name'=>'required',
-              ]);
+            ]);
             $sub = new Sub_category;
             $sub->category_name = $request->category_name;
             $sub->sub_category_name = $request->sub_category_name;
@@ -33,10 +33,6 @@ class subCategoryController extends Controller
 
 	public function show($id) {
             $cs = Sub_category::find($id);
-            // $cs->category_name = $request->category_name;
-            // $cs->sub_category_name = $request->sub_category_name;
-            // $cs->save();
-
             return view('Sub_category/view_sub_category', compact('cs'));
 	}
 
@@ -47,6 +43,10 @@ class subCategoryController extends Controller
 	}
 
 	public function update(Request $request, $id) {
+            $request->validate([
+                  'category_name'=>'required',
+                  'sub_category_name'=>'required',
+            ]);
             $up_sub = Sub_category::find($id);
             $up_sub->category_name = $request->category_name;
             $up_sub->sub_category_name = $request->sub_category_name;

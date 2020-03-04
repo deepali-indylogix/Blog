@@ -5,8 +5,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-10 well">
             <div class="card">
-
-
+                <h2><b>Sub Category</b></h2>
                 <div class="card-body">
                     @if(session()->get('success'))
                         <div class="alert alert-success">
@@ -50,7 +49,5 @@
         </div>
     </div>
 </div>
-
-    
 
 @include('footer')

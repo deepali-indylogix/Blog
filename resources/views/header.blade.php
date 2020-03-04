@@ -6,8 +6,7 @@
 
         <title>Laravel</title>
 
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
-         rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -17,7 +16,119 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="bootstrap.min.js"></script>
-        
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                // Check or Uncheck All checkboxes
+                $("#all_select").change(function(){
+                    var checked = $(this).is(':checked');
+                    if(checked){
+                    $(".delete_all").each(function(){
+                        $(this).prop("checked",true);
+                        // console.log($(this).prop("checked",true));
+                    });
+                    }else{
+                    $(".delete_all").each(function(){
+                        $(this).prop("checked",false);
+                    });
+                    }
+                });
+                // Changing state of all_select delete_all
+                $(".delete_all").click(function(){
+
+                    if($(".delete_all").length == $(".delete_all:checked").length) {
+                    $("#all_select").prop("checked", true);
+                    } else {
+                    $("#all_select").removeAttr("checked");
+                    }
+
+                });
+
+
+                //delete single data
+                $(document).on('click', '#abcd', function(){
+                    var id = $(this).attr('data-id');
+                    $('#delete:checked').each(function(){
+                        id.push($(this).attr('data-id'));
+                    });
+                    var check = confirm("Are you sure you want to Delete this data?");
+                    if(check == true) {
+                        $.ajax({
+                            url: '/category/delete/{id}',
+                            mehtod:"get",
+                            data:{id:id},
+                            success:function(data) {
+                                // alert(data);
+                                // $('.table').DataTable().ajax.reload();
+                            }
+                        })
+                    }
+
+                });
+
+
+
+                $('#abc').on('click', function(e) {
+                    var id = [];
+                    $("#delete:checked").each(function() {
+                        id.push($(this).attr('data-id'));
+                    });
+                    console.log(id);
+                    if(id.length <=0) {
+                        alert("Please select row.");
+                    }  else {
+                        var check = confirm("Are you sure you want to delete THIS row?");
+                        if(check == true){
+                            // alert('id');
+                            var join = id.join(",");
+                            $.ajax({
+                                url: '/category/delete/{id}',
+                                method:"get",
+                                type:'DELETE',
+                                data:{ids:join},
+                                success: function (data) {
+                                    // $('.table').DataTable().ajax.reload();
+                                    $('#table2').load(location.href + " #table2");
+                                    //$('location').attr('href', '/category/view');
+                                },
+                                error: function (data) {
+                                    alert(data.responseText);
+                                }
+                            });
+                        }
+                    }
+                });
+
+                // // delete all data
+                // $(document).on('click', '#all_selectt', function(){
+                //     var id = [];
+                //     $('.select_all:checked').each(function(){
+                //         id.push($(this).attr('data-id'));
+                //     });
+                //     if(confirm("Are you sure you want to Delete ALL data?")) {
+                //         if(id.length > 0) {
+                //             var join_selected_values = allVals.join(",");
+                //             $.ajax({
+                //                 url: '/category/delete/{id}',
+                //                 method:"get",
+                //                 data:{id:join_selected_values},
+                //                 success:function(data) {
+                //                     // alert(data);
+                //                     $('.table').DataTable().ajax.reload();
+                //                 }
+                //             });
+                //         }
+                //         else {
+                //             alert("Please select atleast one checkbox");
+                //         }
+                //     }
+                // });
+
+
+            });
+        </script>
+
         <style>
             html, body {
                 font-size: 16px;
@@ -27,6 +138,9 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+            }
+            h2{
+                text-align: center;
             }
 
             .full-height {
@@ -70,7 +184,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-            
+
         </style>
     </head>
     <body>
@@ -91,6 +205,5 @@
                     @endauth
                 </div>
             @endif
-        
-            
-        
+
+
