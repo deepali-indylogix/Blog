@@ -9,9 +9,6 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
@@ -20,13 +17,13 @@
 
         <script>
             $(document).ready(function(){
-                // Check or Uncheck All checkboxes
+                //CATEGORY
+                // Check or Uncheck All checkboxes for Category
                 $("#all_select").change(function(){
                     var checked = $(this).is(':checked');
                     if(checked){
                     $(".delete_all").each(function(){
                         $(this).prop("checked",true);
-                        // console.log($(this).prop("checked",true));
                     });
                     }else{
                     $(".delete_all").each(function(){
@@ -34,7 +31,7 @@
                     });
                     }
                 });
-                // Changing state of all_select delete_all
+                // Changing category of all_select delete_all
                 $(".delete_all").click(function(){
 
                     if($(".delete_all").length == $(".delete_all:checked").length) {
@@ -44,8 +41,7 @@
                     }
 
                 });
-
-
+                // perticular or all delete category data
                 $('#abc').on('click', function(e) {
                     var id = [];
                     $("#delete:checked").each(function() {
@@ -66,6 +62,62 @@
                                 data:{ids:join},
                                 success: function (data) {
                                     $('#table2').load(location.href + " #table2");
+                                },
+                                error: function (data) {
+                                    alert(data.responseText);
+                                }
+                            });
+                        }
+                    }
+                });
+
+
+
+                //SUB CATEGORY
+                // Check or Uncheck All checkboxes for Sub category
+                $("#sub_select_all").change(function(){
+                    var checked = $(this).is(':checked');
+                    if(checked){
+                    $(".sub_delete").each(function(){
+                        $(this).prop("checked",true);
+                    });
+                    }else{
+                    $(".sub_delete").each(function(){
+                        $(this).prop("checked",false);
+                    });
+                    }
+                });
+                // Changing category of sub_select _All
+                $(".sub_delete").click(function(){
+
+                    if($(".sub_delete").length == $(".sub_delete:checked").length) {
+                    $("#sub_select_all").prop("checked", true);
+                    } else {
+                    $("#sub_select_all").removeAttr("checked");
+                    }
+
+                });
+                // perticular or all delete sub category data
+                $('#sub').on('click', function(e) {
+                    var id = [];
+                    $("#sub_delete:checked").each(function() {
+                        id.push($(this).attr('data-id'));
+                    });
+                    console.log(id);
+                    if(id.length <=0) {
+                        alert("Please select row.");
+                    }  else {
+                        var check = confirm("Are you sure you want to delete THIS row?");
+                        if(check == true){
+                            // alert('id');
+                            var join = id.join(",");
+                            $.ajax({
+                                url: '/sub_category/delete/{id}',
+                                method:"get",
+                                type:'DELETE',
+                                data:{ids:join},
+                                success: function (data) {
+                                    $('#sub_cat_table').load(location.href + " #sub_cat_table");
                                 },
                                 error: function (data) {
                                     alert(data.responseText);

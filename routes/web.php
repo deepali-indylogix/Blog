@@ -37,3 +37,4 @@ Route::get('/sub_category/show/{id}', 'subCategoryController@show');
 Route::get('/sub_category/edit/{id}', 'subCategoryController@edit');
 Route::get('/sub_category/update/{id}', 'subCategoryController@update');
 Route::get('/sub_category/destroy/{id}', 'subCategoryController@destroy');
+Route::get('/sub_category/delete/{id}', 'subCategoryController@delete');

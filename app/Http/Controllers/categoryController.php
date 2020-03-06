@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 class categoryController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //fetch data
     public function index() {
         $result = Category::all();
@@ -68,7 +73,5 @@ class categoryController extends Controller
         Category::find($ids)->whereIn('id',explode(",",$ids))->delete();
         // return redirect('/category/view')->with('success', 'single Category deleted!');
     }
-
-
 
 }
